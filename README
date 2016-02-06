@@ -1,3 +1,4 @@
-username: michael
-environment: env
-start environment source .env/bin/activate
+Broadcast: a simple Django app that can send messages to groupme and Twitter at the same time.
+
+
+
