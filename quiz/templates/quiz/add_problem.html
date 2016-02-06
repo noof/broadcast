@@ -1,0 +1,26 @@
+<h2>Add a Problem:</h2>
+
+{% if error_message %}<p style="color:red">{{ error_message }}</p>{% endif %}
+
+<form action="{% url 'quiz:add_logic' %}" method="post">
+{% csrf_token %}
+	<label for="problem_value">Problem: </label>
+	<input type="text" name="problem_value" id="problem_value"/>
+	<br>
+	<br>
+
+	<p>Choices: (mark one correct)</p>
+	<input type="radio" name="is_correct" id="is_correct1" value="1" />
+	<input type="text" name="answer_value1" id="answer_value1"/><br />
+	<input type="radio" name="is_correct" id="is_correct2" value="2" />
+	<input type="text" name="answer_value2" id="answer_value2"/><br />
+	<input type="radio" name="is_correct" id="is_correct3" value="3" />
+	<input type="text" name="answer_value3" id="answer_value3"/><br />
+	<input type="radio" name="is_correct" id="is_correct4" value="4" />
+	<input type="text" name="answer_value4" id="answer_value4"/><br />
+
+	<br>
+<input type="submit" value="Add Question" />
+</form>
+<br>
+<a style="color:blue" href="{% url 'quiz:edit' %}">Back to Edit Page</a>

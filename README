@@ -1,0 +1,3 @@
+username: michael
+environment: env
+start environment source .env/bin/activate

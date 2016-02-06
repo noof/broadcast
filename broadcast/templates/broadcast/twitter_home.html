@@ -1,0 +1,30 @@
+<h1>Twitter Settings</h1>
+
+{% if twitter %}
+<p>Currently signed in as {{ twitter.screen_name }}.</p>
+<form action="{% url 'broadcast:remove_twitter' %}" method="post">
+	{% csrf_token %}
+	<input type="submit" value="Remove Credentials">
+</form>
+<br>
+<form action="{% url 'broadcast:save_twitter' %}" method="post">
+	{% csrf_token %}
+	<input type="checkbox" name="active" {% if twitter.active %}checked{% endif %}>Send to {{ twitter.screen_name }}'s Twitter<br />
+	<br>
+	<input type="submit" value="Save Settings">
+</form>
+{% else %}
+<p>Input Twitter API Information</p>
+<form action="{% url 'broadcast:add_twitter' %}" method="post">
+	{% csrf_token %}
+	Consumer key: <input type="text" name="consumer_key" id="consumer_key" /><br>
+	Consumer secret: <input type="text" name="consumer_secret" id="consumer_secret" /><br>
+	Access token key: <input type="text" name="access_token_key" id="access_token_key" /><br>
+	Access token secret: <input type="text" name="access_token_secret" id="access_token_secret" /><br>
+	<br>
+	<input type="submit" value="Verify Credentials" />
+</form>
+{% endif %}
+<br>
+<br>
+<a style="color: blue" href="{% url 'broadcast:index' %}">Back to home</a>

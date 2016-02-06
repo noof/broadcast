@@ -1,0 +1,8 @@
+<h2>{{ problem.problem_text }}</h2>
+
+<form action="{% url 'quiz:delete_problem' problem.id %}" method="post">
+{% csrf_token %}
+<input type="submit" value="Delete This Question" />
+</form>
+<br>
+<a style="color:blue" href="{% url 'quiz:edit' %}">Back to Edit Page</a>

@@ -1,0 +1,27 @@
+<h1>GroupMe Groups</h1>
+
+{% if groups %}
+<p>Select groups you would like to send messages to.</p>
+	<form action="{% url 'broadcast:save_groups' %}" method="post">
+		{% csrf_token %}
+		{% for group in groups.all %}
+			<input type="checkbox" name="active" value="{{ group.group_id }}" {% if group.active %}checked{% endif %}>{{ group.group_name }}<br />
+		{% endfor %}
+		<br>
+		<input type="submit" value="Save Settings" />
+	</form>
+	<form action="{% url 'broadcast:wipe_groups' %}" method="post">
+		{% csrf_token %}
+		<input type="submit" value="Delete Groups">
+	</form>
+{% else %}
+<p style="color: red">Not currently logged in or no valid API token given. Or maybe you don't have any groups :(</p>
+<form action="{% url 'broadcast:add_groupme_api' %}" method="post">
+	{% csrf_token %}
+	GroupMe API Token: <input type="text" name="groupmeApiToken" id="groupmeApiToken" />
+	<input type="submit" value="Add GroupMe API Token" />
+</form>
+{% endif %}
+<br>
+<br>
+<a style="color: blue" href="{% url 'broadcast:index' %}">Back to home</a>

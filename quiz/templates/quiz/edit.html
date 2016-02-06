@@ -1,0 +1,15 @@
+<h2>Problems:</h2>
+
+{% if problem_list %}
+	<ol>
+		{% for problem in problem_list %}
+		<li><a style="color:blue" href="{% url 'quiz:edit_problem' problem.pk %}">{{ problem.problem_text }}</a></li>
+		{% endfor %}
+	</ol>
+{% else %}
+	<p>There are currently no problems in the test.</p>
+{% endif %}
+<ul>
+	<li><a style="color:blue" href="{% url 'quiz:add_problem' %}">Add a Problem</a></li>
+	<li><a style="color:blue" href="{% url 'quiz:index' %}">Back to Homepage</a></li>
+</ul>

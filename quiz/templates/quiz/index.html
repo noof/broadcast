@@ -1,0 +1,9 @@
+<h1>Simple Test App</h1>
+<ul>
+	{% if problem_list.first.id %}
+	<li><a style="color:blue" href="{% url 'quiz:take' problem_list.first.id %}">Take the Test</a></li>
+	{% else %}
+	<li>Test is currently empty. Add questions in the 'Edit the Test' page.</li>
+	{% endif %}
+	<li><a style="color:blue" href="{% url 'quiz:edit' %}">Edit the Test</a></li>
+</ul>

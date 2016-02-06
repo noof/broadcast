@@ -1,0 +1,11 @@
+<h1>Broadcast</h1>
+<ul>
+	<li><a style="color:blue" href="{% url 'broadcast:groupme_home'%}">GroupMe Settings</a></li>
+	<li><a style="color:blue" href="{% url 'broadcast:twitter_home' %}">Twitter Settings</a></li>
+</ul>
+<br>
+<form action="{% url 'broadcast:send_message' %}" method="post">
+	{% csrf_token %}
+	Broadcast this message to GroupMe and Twitter: <input type="text" name="message" id="message" />
+	<input type="submit" value="Send Message" />
+</form>

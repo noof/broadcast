@@ -1,0 +1,19 @@
+{% if problem %}
+<h4>{{ problem.problem_text }}</h4>
+
+{% if error_message %}<p style="color:red">{{ error_message }}</p>{% endif %}
+
+<form action="{% url 'quiz:choose' problem.id %}" method="post">
+{% csrf_token %}
+{% for answer in problem.answer_set.all %}
+    <input type="radio" name="answer" id="answer{{ forloop.counter }}" value="{{ answer.id }}" />
+    <label for="answer{{ forloop.counter }}">{{ answer.answer_text }}</label><br />
+{% endfor %}
+<br>
+<input type="submit" value="Next Question" />
+</form>
+<!--<br>
+<p>Current score: {{ problem.cur_score }}/{{ problem.id|add:"-1" }}</p> -->
+{% else %}
+<p>Nothing here</p>
+{% endif %}
