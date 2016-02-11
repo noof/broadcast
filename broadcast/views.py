@@ -76,12 +76,13 @@ def sendMessage(request):
 	#groupme side
 	msgText = request.POST['message']
 	#make random string for guid
-	guid = str(randint(-32000,32000))
 	token = Token.objects.first()
-	msgData = json.dumps({"message":{"source_guid":guid, "text": msgText}})
 	print "Sending message " + msgText
 	for g in Group.objects.all():
 		if g.active:
+			print token.token_text
+			guid = str(randint(-32000,32000))
+			msgData = json.dumps({"message":{"source_guid":guid, "text": msgText}})
 			print requests.post("https://api.groupme.com/v3/groups/" + g.group_id + "/messages?token=" + token.token_text, data=msgData, headers={'Content-Type': 'application/json'})
 	#twitter side
 	keys = TwitterKeys.objects.all()
